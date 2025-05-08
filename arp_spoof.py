@@ -51,7 +51,6 @@ except Exception as e:
     print(f"\n[!] Unexpected error: {e}\nRestoring ARP tables...")
 
 finally:
-    print("\n[!] Detected Ctrl+C! Stopping ARP spoofing and restoring network...")
     print(f"[+] Spoofing {ip2}: {ip1} is at {mac_ip1}")
     print(f"[+] Spoofing {ip1}: {ip2} is at {mac_ip2}")
     spoof_target(ip1, ip2, mac_ip1, mac_ip2)
